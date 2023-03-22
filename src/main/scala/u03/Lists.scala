@@ -1,6 +1,8 @@
 package u03
 
+import u02.Optionals.*
 object Lists extends App :
+  import Option.*
 
   // A generic linkedlist
   enum List[E]:
@@ -34,6 +36,17 @@ object Lists extends App :
     def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] = l match
       case Nil() => Nil()
       case Cons(h, t) => append(f(h), flatMap(t)(f))
+
+    def max(l: List[Int]): Option[Int] =
+      def _max(i: Int, l: List[Int]): Int = (i, l) match
+        case (_, Nil()) => i
+        case (_, Cons(h, t)) if i >= _max(h, t) => i
+        case (_, Cons(h, t)) if i < _max(h, t) => _max(h, t)
+      l match
+      case Nil() => None()
+      case Cons(h, l) => Some(_max(h, l))
+
+
 
 
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
