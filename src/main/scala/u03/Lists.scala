@@ -23,32 +23,7 @@ object Lists extends App :
       case Cons(h, t) if pred(h) => Cons(h, filter(t)(pred))
       case Cons(_, t) => filter(t)(pred)
       case Nil() => Nil()
-
-    def drop[A](l: List[A], n: Int): List[A] = (l, n) match
-      case (_, 0) => l
-      case (Nil(), _) => Nil()
-      case (Cons(_, t), _) => drop(t, n - 1)
-
-    def append[A](left: List[A], right: List[A]): List[A] = (left, right) match
-      case (Nil(), _) => right
-      case (Cons(h1, t1), _) => Cons(h1, append(t1, right))
-
-    def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] = l match
-      case Nil() => Nil()
-      case Cons(h, t) => append(f(h), flatMap(t)(f))
-
-    def max(l: List[Int]): Option[Int] =
-      def _max(i: Int, l: List[Int]): Int = (i, l) match
-        case (_, Nil()) => i
-        case (_, Cons(h, t)) if i >= _max(h, t) => i
-        case (_, Cons(h, t)) if i < _max(h, t) => _max(h, t)
-      l match
-      case Nil() => None()
-      case Cons(h, l) => Some(_max(h, l))
-
-
-
-
+  
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
   println(List.sum(l)) // 60
 
