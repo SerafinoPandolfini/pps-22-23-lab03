@@ -5,12 +5,15 @@ import u02.Modules.Person
 import u02.Modules.Person.Teacher
 import u02.Optionals.*
 
+import scala.annotation.tailrec
+
 object Lab03:
 
   import List.*
   import Option.*
 
   // Task 1a, svolto da solo
+  @tailrec
   def drop[A](l: List[A], n: Int): List[A] = (l, n) match
     case (_, 0) => l
     case (Nil(), _) => Nil()
@@ -43,6 +46,7 @@ object Lab03:
       case _ => Nil())
 
   // Task 4, svolto da solo
+  @tailrec
   def foldLeft[A, B](l: List[A])(v: B)(a: (B, A) => B): B = l match
     case Nil() => v
     case Cons(h, t) => foldLeft(t)(a(v, h))(a)
