@@ -44,3 +44,8 @@ class Lab03Test:
     assertEquals(Nil(), getCourses(students))
     val teachers = Cons(Teacher("Luigi", "test"), Cons(Teacher("Mario", "prova"), Nil()))
     assertEquals(Cons("test", Cons("prova", Nil())), getCourses(teachers))
+
+  @Test def testFold() =
+    val lst = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
+    assertEquals(-16, foldLeft(lst)(0)(_ - _))
+    assertEquals(-8, foldRight(lst)(0)(_ - _))
