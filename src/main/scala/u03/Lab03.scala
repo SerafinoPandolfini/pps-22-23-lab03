@@ -4,6 +4,7 @@ import Lists.*
 import u02.Modules.Person
 import u02.Modules.Person.Teacher
 import u02.Optionals.*
+import u03.Streams.*
 
 import scala.annotation.tailrec
 
@@ -11,6 +12,7 @@ object Lab03:
 
   import List.*
   import Option.*
+  import Stream.*
 
   // Task 1a, svolto da solo
   @tailrec
@@ -56,4 +58,6 @@ object Lab03:
     case Nil() => v
     case Cons(h, t) => a(h, foldRight(t)(v)(a))
 
-
+  // Task 6, svolto da solo
+def constant[A](v : A): Stream[A] =
+  Stream.cons(v, constant(v))

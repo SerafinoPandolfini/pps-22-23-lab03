@@ -51,7 +51,11 @@ class Lab03Test:
     val lst = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
     assertEquals(-16, foldLeft(lst)(0)(_ - _))
     assertEquals(-8, foldRight(lst)(0)(_ - _))
-    
+
   @Test def testStreamDrop() =
     val s = Stream.take(Stream.iterate(0)(_ + 1))(10)
-    assertEquals(Cons (6 , Cons (7 , Cons (8 , Cons (9 , Nil ())))), Stream.toList(Stream.drop(s)(6)))
+    assertEquals(Cons(6, Cons(7, Cons(8, Cons(9, Nil())))), Stream.toList(Stream.drop(s)(6)))
+
+  @Test def testConstant() =
+    assertEquals(Cons ("x", Cons("x", Cons("x", Cons("x", Cons("x", Nil()))))),
+      Stream.toList(Stream.take(constant("x"))(5)))
