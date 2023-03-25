@@ -31,10 +31,19 @@ object Lab03:
     case Nil() => Nil()
     case Cons(h, t) => append(f(h), flatMap(t)(f))
 
+  // Task 1d, svolto da solo
+  def map[A, B](l: List[A])(mapper: A => B): List[B] = l match
+    case Cons(_, _) => flatMap(l)(h => Cons(mapper(h), Nil()))
+    case Nil() => Nil()
+
+  def filter[A](l1: List[A])(pred: A => Boolean): List[A] = l1 match
+    case Cons(h, _) if pred(h) => flatMap(l1)(h => Cons(h, Nil()))
+    case Cons(h, t) if !pred(h) => filter(t)(pred)
+    case _ => Nil()
+
   // Task 2, svolto da solo
   def max(l: List[Int]): Option[Int] =
     def _max(i: Int, l: List[Int]): Int = (i, l) match
-      case (_, Nil()) => i
       case (_, Cons(h, t)) if i >= _max(h, t) => i
       case (_, Cons(h, t)) if i < _max(h, t) => _max(h, t)
       case _ => i
@@ -59,5 +68,8 @@ object Lab03:
     case Cons(h, t) => a(h, foldRight(t)(v)(a))
 
   // Task 6, svolto da solo
-def constant[A](v : A): Stream[A] =
-  Stream.cons(v, constant(v))
+  def constant[A](v: A): Stream[A] =
+    Stream.cons(v, constant(v))
+
+  // Task 7, svolto da solo
+  val fibs: Stream[Int] = cons(0, cons(1, fibs))

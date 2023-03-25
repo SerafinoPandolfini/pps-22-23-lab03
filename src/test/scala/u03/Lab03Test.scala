@@ -31,6 +31,14 @@ class Lab03Test:
     assertEquals(Cons(11, Cons(12, Cons(21, Cons(22, Cons(31, Cons(32, Nil())))))),
       Lab03.flatMap(l)(v => Cons(v + 1, Cons(v + 2, Nil()))))
 
+  @Test def testMap() =
+    assertEquals(Cons(11, Cons(21, Cons(31, Nil()))), map(l)(_ + 1))
+    assertEquals(Cons("10", Cons("20", Cons("30", Nil()))), map(l)(_ + ""))
+
+  @Test def testFilter() =
+    assertEquals(Cons(20, Cons(30, Nil())), filter(l)(_ >= 20))
+    assertEquals(Cons(10, Cons(30, Nil())), filter(l)(_ != 20))
+
   @Test def testMax() =
     assertEquals(Some(25), max(Cons(10, Cons(25, Cons(20, Nil())))))
     assertEquals(None(), max(Nil()))
@@ -59,3 +67,7 @@ class Lab03Test:
   @Test def testConstant() =
     assertEquals(Cons ("x", Cons("x", Cons("x", Cons("x", Cons("x", Nil()))))),
       Stream.toList(Stream.take(constant("x"))(5)))
+
+  @Test def testFibs() =
+    assertEquals(Cons(0, Cons(1, Cons(1, Cons(2, Cons(3, Cons(5, Cons(8, Cons(13, Nil())))))))),
+      Stream.toList(Stream.take(fibs)(8)))
