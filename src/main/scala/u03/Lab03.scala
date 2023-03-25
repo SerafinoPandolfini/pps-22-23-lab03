@@ -35,6 +35,7 @@ object Lab03:
       case (_, Nil()) => i
       case (_, Cons(h, t)) if i >= _max(h, t) => i
       case (_, Cons(h, t)) if i < _max(h, t) => _max(h, t)
+      case _ => i
     l match
       case Nil() => None()
       case Cons(h, l) => Some(_max(h, l))
