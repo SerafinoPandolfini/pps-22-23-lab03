@@ -72,4 +72,7 @@ object Lab03:
     Stream.cons(v, constant(v))
 
   // Task 7, svolto da solo
-  val fibs: Stream[Int] = cons(0, cons(1, fibs))
+  def iterate[A](i1: => A)(i2: => A)(next: (A, A) => A): Stream[A] =
+    cons(i1, iterate(i2)(next(i1, i2))(next))
+
+  val fibs: Stream[Int] = iterate(0)(1)(_ + _)
