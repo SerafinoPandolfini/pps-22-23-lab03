@@ -32,12 +32,12 @@ class Lab03Test:
       Lab03.flatMap(l)(v => Cons(v + 1, Cons(v + 2, Nil()))))
 
   @Test def testMap() =
-    assertEquals(Cons(11, Cons(21, Cons(31, Nil()))), map(l)(_ + 1))
-    assertEquals(Cons("10", Cons("20", Cons("30", Nil()))), map(l)(_ + ""))
+    assertEquals(Cons(11, Cons(21, Cons(31, Nil()))), Lab03.map(l)(_ + 1))
+    assertEquals(Cons("10", Cons("20", Cons("30", Nil()))), Lab03.map(l)(_ + ""))
 
   @Test def testFilter() =
-    assertEquals(Cons(20, Cons(30, Nil())), filter(l)(_ >= 20))
-    assertEquals(Cons(10, Cons(30, Nil())), filter(l)(_ != 20))
+    assertEquals(Cons(20, Cons(30, Nil())), Lab03.filter(l)(_ >= 20))
+    assertEquals(Cons(10, Cons(30, Nil())), Lab03.filter(l)(_ != 20))
 
   @Test def testMax() =
     assertEquals(Some(25), max(Cons(10, Cons(25, Cons(20, Nil())))))

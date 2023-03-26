@@ -8,7 +8,7 @@ import u03.Streams.*
 
 import scala.annotation.tailrec
 
-object Lab03:
+object Lab03 extends App:
 
   import List.*
   import Option.*
@@ -36,9 +36,10 @@ object Lab03:
     case Cons(_, _) => flatMap(l)(h => Cons(mapper(h), Nil()))
     case Nil() => Nil()
 
-  def filter[A](l1: List[A])(pred: A => Boolean): List[A] = l1 match
-    case Cons(h, _) if pred(h) => flatMap(l1)(h => Cons(h, Nil()))
-    case Cons(h, t) if !pred(h) => filter(t)(pred)
+  def filter[A](l: List[A])(pred: A => Boolean): List[A] = l match
+    case Cons(h, _)  => flatMap(l)(f => f match
+      case _ if pred(f) => Cons(f, Nil())
+      case _ => Nil())
     case _ => Nil()
 
   // Task 2, svolto da solo
