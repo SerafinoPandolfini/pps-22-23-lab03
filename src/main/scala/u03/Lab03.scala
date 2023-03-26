@@ -68,6 +68,8 @@ object Lab03 extends App:
     case Nil() => v
     case Cons(h, t) => a(h, foldRight(t)(v)(a))
 
+  // Task 5 in Streams.scala
+
   // Task 6, svolto da solo
   def constant[A](v: A): Stream[A] =
     Stream.cons(v, constant(v))
